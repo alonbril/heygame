@@ -20,11 +20,12 @@ canvas{position:absolute;inset:0;width:390px;height:844px;display:block}
 <div class="pill" style="right:16px;gap:8px;padding:5px 14px 5px 8px"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxyZWN0IHg9IjIyIiB5PSI3IiB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHJ4PSI3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjRGQjAiIHN0cm9rZS13aWR0aD0iNSI+PC9yZWN0PjxyZWN0IHg9IjEyIiB5PSIxOSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQxIiByeD0iMTQiIGZpbGw9IiMyRjZGREIiPjwvcmVjdD48cmVjdCB4PSIxMiIgeT0iMTYiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcng9IjE0IiBmaWxsPSIjM0I4MkY2Ij48L3JlY3Q+PHBhdGggZD0iTTEyIDMxUTMyIDM5IDUyIDMxVjI4UTUyIDE2IDQwIDE2SDI0UTEyIDE2IDEyIDI4WiIgZmlsbD0iIzJGNkZEQiI+PC9wYXRoPjxyZWN0IHg9IjE5IiB5PSIzOCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE0IiByeD0iNiIgZmlsbD0iIzVCOUJGRiI+PC9yZWN0PjxyZWN0IHg9IjI4IiB5PSIzMCIgd2lkdGg9IjgiIGhlaWdodD0iOSIgcng9IjIuNSIgZmlsbD0iI0ZGQzYxQSI+PC9yZWN0PjxwYXRoIGQ9Ik0xNyAyNlExOCAyMCAyNCAxOSIgc3Ryb2tlPSIjOERCOEZGIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==" style="width:30px;height:30px"><div style="position:relative;width:70px;height:12px;border-radius:6px;background:#EDE8F7;overflow:hidden"><div id="capB" style="position:absolute;top:0;bottom:0;right:0;width:0;border-radius:6px;background:#3B82F6;transition:width .12s"></div></div><span id="capT" dir="ltr" style="font:800 16px Rubik">0/10</span></div>
 <div id="reset" title="איפוס" style="position:absolute;left:16px;top:106px;width:40px;height:40px;border-radius:14px;background:rgba(255,255,255,.88);box-shadow:0 3px 0 rgba(42,35,68,.15);display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A5478" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div>
 <div id="speedBtn" style="position:absolute;left:64px;top:106px;height:40px;padding:0 12px;border-radius:14px;background:rgba(255,255,255,.88);box-shadow:0 3px 0 rgba(42,35,68,.15);display:flex;align-items:center;font:800 14px Rubik;color:#5A5478;cursor:pointer">מהיר: כבוי</div>
+<div id="mute" style="position:absolute;left:16px;top:154px;height:36px;padding:0 12px;border-radius:14px;background:rgba(255,255,255,.88);box-shadow:0 3px 0 rgba(42,35,68,.15);display:flex;align-items:center;font:800 14px Rubik;color:#5A5478;cursor:pointer">סאונד: פעיל</div>
 <div id="hint">גררו כדי לזוז</div>
 <div id="load"><div style="font:900 52px Rubik;color:#fff;-webkit-text-stroke:9px #2F7A24;paint-order:stroke fill;text-shadow:0 6px 0 #2F7A24">חציר בע״מ</div><div id="loadT" style="font:800 18px Rubik;color:#FFF6C8">טוען את החווה…</div></div>
 </div></div>
 <script type="module">
-const SPR = {"coin":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxlbGxpcHNlIGN4PSIyNCIgY3k9IjQ0LjUiIHJ4PSIxNCIgcnk9IjMiIGZpbGw9IiMxRTNBMTQiIG9wYWNpdHk9IjAuMTYiPjwvZWxsaXBzZT48Y2lyY2xlIGN4PSIyNCIgY3k9IjI1IiByPSIxOSIgZmlsbD0iI0MyN0EwMCI+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjQiIGN5PSIyMiIgcj0iMTkiIGZpbGw9IiNGRkM2MUEiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjI0IiBjeT0iMjIiIHI9IjEzLjUiIGZpbGw9IiNGRkQ0NDciIHN0cm9rZT0iI0YwQTAwMCIgc3Ryb2tlLXdpZHRoPSIzIj48L2NpcmNsZT48cG9seWdvbiBwb2ludHM9IjI0LDE0LjUgMjYuMTIsMTkuNTkgMzEuNjEsMjAuMDMgMjcuNDIsMjMuNjEgMjguNywyOC45NyAyNCwyNi4xIDE5LjMsMjguOTcgMjAuNTgsMjMuNjEgMTYuMzksMjAuMDMgMjEuODgsMTkuNTkiIGZpbGw9IiNGMEEwMDAiIHN0cm9rZT0iI0YwQTAwMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcG9seWdvbj48cGF0aCBkPSJNMTAuNSAxNyBBMTQuNSAxNC41IDAgMCAxIDE5IDguNSIgc3Ryb2tlPSIjRkZGNkM4IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==","icon-backpack":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxyZWN0IHg9IjIyIiB5PSI3IiB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHJ4PSI3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjRGQjAiIHN0cm9rZS13aWR0aD0iNSI+PC9yZWN0PjxyZWN0IHg9IjEyIiB5PSIxOSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQxIiByeD0iMTQiIGZpbGw9IiMyRjZGREIiPjwvcmVjdD48cmVjdCB4PSIxMiIgeT0iMTYiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcng9IjE0IiBmaWxsPSIjM0I4MkY2Ij48L3JlY3Q+PHBhdGggZD0iTTEyIDMxUTMyIDM5IDUyIDMxVjI4UTUyIDE2IDQwIDE2SDI0UTEyIDE2IDEyIDI4WiIgZmlsbD0iIzJGNkZEQiI+PC9wYXRoPjxyZWN0IHg9IjE5IiB5PSIzOCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE0IiByeD0iNiIgZmlsbD0iIzVCOUJGRiI+PC9yZWN0PjxyZWN0IHg9IjI4IiB5PSIzMCIgd2lkdGg9IjgiIGhlaWdodD0iOSIgcng9IjIuNSIgZmlsbD0iI0ZGQzYxQSI+PC9yZWN0PjxwYXRoIGQ9Ik0xNyAyNlExOCAyMCAyNCAxOSIgc3Ryb2tlPSIjOERCOEZGIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==","icon-speed":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxnIHN0cm9rZT0iI0I5QjRDQyIgc3Ryb2tlLXdpZHRoPSI0LjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTQgMjRoOSI+PC9wYXRoPjxwYXRoIGQ9Ik0yIDM0aDExIj48L3BhdGg+PHBhdGggZD0iTTYgNDRoNyI+PC9wYXRoPjwvZz48cGF0aCBkPSJNMTcgNDRDMTcgMzAgMjAgMjAgMjkgMjBIMzRDMzYgMjcgNDAgMjkgNDcgMzFDNTUgMzMgNjEgMzggNjEgNDRDNjEgNDggNTkgNTAgNTUgNTBIMjFDMTggNTAgMTcgNDggMTcgNDRaIiBmaWxsPSIjRkY0RjNCIj48L3BhdGg+PHBhdGggZD0iTTE3IDQ1SDYxVjQ5QzYxIDUzIDU4IDU2IDU0IDU2SDIyQzE5IDU2IDE3IDU0IDE3IDUxWiIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPjxwYXRoIGQ9Ik0xNyA1MUg2MSIgc3Ryb2tlPSIjRTNFMEVDIiBzdHJva2Utd2lkdGg9IjMiPjwvcGF0aD48cGF0aCBkPSJNNDcgMzFDNTUgMzMgNjEgMzggNjEgNDRINDhDNDggMzggNDYgMzQgNDIgMzJaIiBmaWxsPSIjRkY3QTY2Ij48L3BhdGg+PGcgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTMzIDI2bDUtMiI+PC9wYXRoPjxwYXRoIGQ9Ik0zNiAzMWw1LTIiPjwvcGF0aD48L2c+PHBhdGggZD0iTTIxIDMwUTIyIDI0IDI3IDIzIiBzdHJva2U9IiNGRkEzOTIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBmaWxsPSJub25lIj48L3BhdGg+PC9zdmc+","icon-machine":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxyZWN0IHg9IjI2LjUiIHk9IjkiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0Q5M0EyQSIgdHJhbnNmb3JtPSJyb3RhdGUoMCAzMiAzNikiPjwvcmVjdD48cmVjdCB4PSIyNi41IiB5PSI5IiB3aWR0aD0iMTEiIGhlaWdodD0iMTQiIHJ4PSIzLjUiIGZpbGw9IiNEOTNBMkEiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDMyIDM2KSI+PC9yZWN0PjxyZWN0IHg9IjI2LjUiIHk9IjkiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0Q5M0EyQSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgMzIgMzYpIj48L3JlY3Q+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNiIgcj0iMjAiIGZpbGw9IiNEOTNBMkEiPjwvY2lyY2xlPjxyZWN0IHg9IjI2LjUiIHk9IjUiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0ZGNEYzQiIgdHJhbnNmb3JtPSJyb3RhdGUoMCAzMiAzMikiPjwvcmVjdD48cmVjdCB4PSIyNi41IiB5PSI1IiB3aWR0aD0iMTEiIGhlaWdodD0iMTQiIHJ4PSIzLjUiIGZpbGw9IiNGRjRGM0IiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDMyIDMyKSI+PC9yZWN0PjxyZWN0IHg9IjI2LjUiIHk9IjUiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0ZGNEYzQiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgMzIgMzIpIj48L3JlY3Q+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMjAiIGZpbGw9IiNGRjRGM0IiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjkiIGZpbGw9IiNGRkY4RUMiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5M0EyQSIgc3Ryb2tlLXdpZHRoPSIzIj48L2NpcmNsZT48cGF0aCBkPSJNMTkgMjZRMjEgMTkgMjggMTYiIHN0cm9rZT0iI0ZGQTM5MiIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==","icon-lock":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxwYXRoIGQ9Ik0yMSAzMFYyMmExMSAxMSAwIDAgMSAyMiAwVjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Qzg3QTMiIHN0cm9rZS13aWR0aD0iNi41Ij48L3BhdGg+PHJlY3QgeD0iMTMiIHk9IjMxIiB3aWR0aD0iMzgiIGhlaWdodD0iMjkiIHJ4PSIxMCIgZmlsbD0iIzhDODdBMyI+PC9yZWN0PjxyZWN0IHg9IjEzIiB5PSIyOCIgd2lkdGg9IjM4IiBoZWlnaHQ9IjI5IiByeD0iMTAiIGZpbGw9IiNCOUI0Q0MiPjwvcmVjdD48Y2lyY2xlIGN4PSIzMiIgY3k9IjQwIiByPSI0LjUiIGZpbGw9IiMyQTIzNDQiPjwvY2lyY2xlPjxyZWN0IHg9IjMwIiB5PSI0MSIgd2lkdGg9IjQiIGhlaWdodD0iOSIgcng9IjIiIGZpbGw9IiMyQTIzNDQiPjwvcmVjdD48L3N2Zz4=","hay-block":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2MCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjYwIiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxwb2x5Z29uIHBvaW50cz0iNCwxOCAzMiwzMiAzMiw1NiA0LDQyIiBmaWxsPSIjRjdCRTM0IiBzdHJva2U9IiNGN0JFMzQiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wb2x5Z29uPjxwb2x5Z29uIHBvaW50cz0iMzIsMzIgNjAsMTggNjAsNDIgMzIsNTYiIGZpbGw9IiNEQzk0MjAiIHN0cm9rZT0iI0RDOTQyMCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PHBvbHlnb24gcG9pbnRzPSIzMiw0IDYwLDE4IDMyLDMyIDQsMTgiIGZpbGw9IiNGRkUyN0EiIHN0cm9rZT0iI0ZGRTI3QSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PGcgc3Ryb2tlPSIjRkZGMUI4IiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMTQgMTdsOC00Ij48L3BhdGg+PHBhdGggZD0iTTMwIDEybDcgMyI+PC9wYXRoPjxwYXRoIGQ9Ik0yNiAyM2w4LTQiPjwvcGF0aD48cGF0aCBkPSJNNDAgMTlsNiAzIj48L3BhdGg+PC9nPgo8ZyBzdHJva2U9IiNFM0ExMUYiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik04IDI4bDYgMyI+PC9wYXRoPjxwYXRoIGQ9Ik0yMiAzOGw2IDMiPjwvcGF0aD48cGF0aCBkPSJNMTAgMzhsNSAyLjUiPjwvcGF0aD48cGF0aCBkPSJNMjQgNDZsNSAyLjUiPjwvcGF0aD48L2c+CjxnIHN0cm9rZT0iI0JGN0ExNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTM4IDQwbDYtMyI+PC9wYXRoPjxwYXRoIGQ9Ik01MCAzMGw2LTMiPjwvcGF0aD48cGF0aCBkPSJNNDAgNTBsNi0zIj48L3BhdGg+PHBhdGggZD0iTTUyIDQwbDUtMi41Ij48L3BhdGg+PC9nPgo8ZyBzdHJva2U9IiNBODY2MEYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuNTUiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xOCAxMUw0NiAyNUw0NiA0OSI+PC9wYXRoPjxwYXRoIGQ9Ik00NiAxMUwxOCAyNUwxOCA0OSI+PC9wYXRoPjwvZz4KPHBhdGggZD0iTTYuNSAxNy41TDMxIDUuNSIgc3Ryb2tlPSIjRkZGNkNDIiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PC9zdmc+","product-box":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2MCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjYwIiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxwb2x5Z29uIHBvaW50cz0iNCwxOCAzMiwzMiAzMiw1NiA0LDQyIiBmaWxsPSIjRjJDRjk1IiBzdHJva2U9IiNGMkNGOTUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wb2x5Z29uPjxwb2x5Z29uIHBvaW50cz0iMzIsMzIgNjAsMTggNjAsNDIgMzIsNTYiIGZpbGw9IiNEOUFFNkEiIHN0cm9rZT0iI0Q5QUU2QSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PHBvbHlnb24gcG9pbnRzPSIzMiw0IDYwLDE4IDMyLDMyIDQsMTgiIGZpbGw9IiNGRkU5QzQiIHN0cm9rZT0iI0ZGRTlDNCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PHBhdGggZD0iTTE4IDExTDQ2IDI1TDQ2IDQ5IiBzdHJva2U9IiNGRjRGM0IiIHN0cm9rZS13aWR0aD0iNyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wYXRoPgo8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLC41LDAsMSwwLDApIj48cmVjdCB4PSI5IiB5PSIyMyIgd2lkdGg9IjE3IiBoZWlnaHQ9IjEzIiByeD0iMy41IiBmaWxsPSIjRkZGRkZGIj48L3JlY3Q+PHJlY3QgeD0iMTMiIHk9IjI2LjUiIHdpZHRoPSI5IiBoZWlnaHQ9IjYiIHJ4PSIxLjUiIGZpbGw9IiNGN0JFMzQiPjwvcmVjdD48L2c+CjxwYXRoIGQ9Ik02LjUgMTcuNUwzMSA1LjUiIHN0cm9rZT0iI0ZGRjhFQyIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg=="};
+const SPR = {"coin":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxlbGxpcHNlIGN4PSIyNCIgY3k9IjQ0LjUiIHJ4PSIxNCIgcnk9IjMiIGZpbGw9IiMxRTNBMTQiIG9wYWNpdHk9IjAuMTYiPjwvZWxsaXBzZT48Y2lyY2xlIGN4PSIyNCIgY3k9IjI1IiByPSIxOSIgZmlsbD0iI0MyN0EwMCI+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjQiIGN5PSIyMiIgcj0iMTkiIGZpbGw9IiNGRkM2MUEiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjI0IiBjeT0iMjIiIHI9IjEzLjUiIGZpbGw9IiNGRkQ0NDciIHN0cm9rZT0iI0YwQTAwMCIgc3Ryb2tlLXdpZHRoPSIzIj48L2NpcmNsZT48cG9seWdvbiBwb2ludHM9IjI0LDE0LjUgMjYuMTIsMTkuNTkgMzEuNjEsMjAuMDMgMjcuNDIsMjMuNjEgMjguNywyOC45NyAyNCwyNi4xIDE5LjMsMjguOTcgMjAuNTgsMjMuNjEgMTYuMzksMjAuMDMgMjEuODgsMTkuNTkiIGZpbGw9IiNGMEEwMDAiIHN0cm9rZT0iI0YwQTAwMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjwvcG9seWdvbj48cGF0aCBkPSJNMTAuNSAxNyBBMTQuNSAxNC41IDAgMCAxIDE5IDguNSIgc3Ryb2tlPSIjRkZGNkM4IiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==","icon-backpack":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxyZWN0IHg9IjIyIiB5PSI3IiB3aWR0aD0iMjAiIGhlaWdodD0iMTQiIHJ4PSI3IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjRGQjAiIHN0cm9rZS13aWR0aD0iNSI+PC9yZWN0PjxyZWN0IHg9IjEyIiB5PSIxOSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQxIiByeD0iMTQiIGZpbGw9IiMyRjZGREIiPjwvcmVjdD48cmVjdCB4PSIxMiIgeT0iMTYiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcng9IjE0IiBmaWxsPSIjM0I4MkY2Ij48L3JlY3Q+PHBhdGggZD0iTTEyIDMxUTMyIDM5IDUyIDMxVjI4UTUyIDE2IDQwIDE2SDI0UTEyIDE2IDEyIDI4WiIgZmlsbD0iIzJGNkZEQiI+PC9wYXRoPjxyZWN0IHg9IjE5IiB5PSIzOCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE0IiByeD0iNiIgZmlsbD0iIzVCOUJGRiI+PC9yZWN0PjxyZWN0IHg9IjI4IiB5PSIzMCIgd2lkdGg9IjgiIGhlaWdodD0iOSIgcng9IjIuNSIgZmlsbD0iI0ZGQzYxQSI+PC9yZWN0PjxwYXRoIGQ9Ik0xNyAyNlExOCAyMCAyNCAxOSIgc3Ryb2tlPSIjOERCOEZGIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==","icon-speed":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxnIHN0cm9rZT0iI0I5QjRDQyIgc3Ryb2tlLXdpZHRoPSI0LjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTQgMjRoOSI+PC9wYXRoPjxwYXRoIGQ9Ik0yIDM0aDExIj48L3BhdGg+PHBhdGggZD0iTTYgNDRoNyI+PC9wYXRoPjwvZz48cGF0aCBkPSJNMTcgNDRDMTcgMzAgMjAgMjAgMjkgMjBIMzRDMzYgMjcgNDAgMjkgNDcgMzFDNTUgMzMgNjEgMzggNjEgNDRDNjEgNDggNTkgNTAgNTUgNTBIMjFDMTggNTAgMTcgNDggMTcgNDRaIiBmaWxsPSIjRkY0RjNCIj48L3BhdGg+PHBhdGggZD0iTTE3IDQ1SDYxVjQ5QzYxIDUzIDU4IDU2IDU0IDU2SDIyQzE5IDU2IDE3IDU0IDE3IDUxWiIgZmlsbD0iI0ZGRkZGRiI+PC9wYXRoPjxwYXRoIGQ9Ik0xNyA1MUg2MSIgc3Ryb2tlPSIjRTNFMEVDIiBzdHJva2Utd2lkdGg9IjMiPjwvcGF0aD48cGF0aCBkPSJNNDcgMzFDNTUgMzMgNjEgMzggNjEgNDRINDhDNDggMzggNDYgMzQgNDIgMzJaIiBmaWxsPSIjRkY3QTY2Ij48L3BhdGg+PGcgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTMzIDI2bDUtMiI+PC9wYXRoPjxwYXRoIGQ9Ik0zNiAzMWw1LTIiPjwvcGF0aD48L2c+PHBhdGggZD0iTTIxIDMwUTIyIDI0IDI3IDIzIiBzdHJva2U9IiNGRkEzOTIiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBmaWxsPSJub25lIj48L3BhdGg+PC9zdmc+","icon-machine":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxyZWN0IHg9IjI2LjUiIHk9IjkiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0Q5M0EyQSIgdHJhbnNmb3JtPSJyb3RhdGUoMCAzMiAzNikiPjwvcmVjdD48cmVjdCB4PSIyNi41IiB5PSI5IiB3aWR0aD0iMTEiIGhlaWdodD0iMTQiIHJ4PSIzLjUiIGZpbGw9IiNEOTNBMkEiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDMyIDM2KSI+PC9yZWN0PjxyZWN0IHg9IjI2LjUiIHk9IjkiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0Q5M0EyQSIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgMzIgMzYpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iOSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRDkzQTJBIiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgMzIgMzYpIj48L3JlY3Q+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNiIgcj0iMjAiIGZpbGw9IiNEOTNBMkEiPjwvY2lyY2xlPjxyZWN0IHg9IjI2LjUiIHk9IjUiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0ZGNEYzQiIgdHJhbnNmb3JtPSJyb3RhdGUoMCAzMiAzMikiPjwvcmVjdD48cmVjdCB4PSIyNi41IiB5PSI1IiB3aWR0aD0iMTEiIGhlaWdodD0iMTQiIHJ4PSIzLjUiIGZpbGw9IiNGRjRGM0IiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDMyIDMyKSI+PC9yZWN0PjxyZWN0IHg9IjI2LjUiIHk9IjUiIHdpZHRoPSIxMSIgaGVpZ2h0PSIxNCIgcng9IjMuNSIgZmlsbD0iI0ZGNEYzQiIgdHJhbnNmb3JtPSJyb3RhdGUoOTAgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgxMzUgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgxODAgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgyMjUgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgyNzAgMzIgMzIpIj48L3JlY3Q+PHJlY3QgeD0iMjYuNSIgeT0iNSIgd2lkdGg9IjExIiBoZWlnaHQ9IjE0IiByeD0iMy41IiBmaWxsPSIjRkY0RjNCIiB0cmFuc2Zvcm09InJvdGF0ZSgzMTUgMzIgMzIpIj48L3JlY3Q+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iMjAiIGZpbGw9IiNGRjRGM0IiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjkiIGZpbGw9IiNGRkY4RUMiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzIiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0Q5M0EyQSIgc3Ryb2tlLXdpZHRoPSIzIj48L2NpcmNsZT48cGF0aCBkPSJNMTkgMjZRMjEgMTkgMjggMTYiIHN0cm9rZT0iI0ZGQTM5MiIgc3Ryb2tlLXdpZHRoPSIzLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PC9wYXRoPjwvc3ZnPg==","icon-lock":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxwYXRoIGQ9Ik0yMSAzMFYyMmExMSAxMSAwIDAgMSAyMiAwVjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Qzg3QTMiIHN0cm9rZS13aWR0aD0iNi41Ij48L3BhdGg+PHJlY3QgeD0iMTMiIHk9IjMxIiB3aWR0aD0iMzgiIGhlaWdodD0iMjkiIHJ4PSIxMCIgZmlsbD0iIzhDODdBMyI+PC9yZWN0PjxyZWN0IHg9IjEzIiB5PSIyOCIgd2lkdGg9IjM4IiBoZWlnaHQ9IjI5IiByeD0iMTAiIGZpbGw9IiNCOUI0Q0MiPjwvcmVjdD48Y2lyY2xlIGN4PSIzMiIgY3k9IjQwIiByPSI0LjUiIGZpbGw9IiMyQTIzNDQiPjwvY2lyY2xlPjxyZWN0IHg9IjMwIiB5PSI0MSIgd2lkdGg9IjQiIGhlaWdodD0iOSIgcng9IjIiIGZpbGw9IiMyQTIzNDQiPjwvcmVjdD48L3N2Zz4=","hay-block":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2MCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjYwIiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxwb2x5Z29uIHBvaW50cz0iNCwxOCAzMiwzMiAzMiw1NiA0LDQyIiBmaWxsPSIjRjdCRTM0IiBzdHJva2U9IiNGN0JFMzQiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wb2x5Z29uPjxwb2x5Z29uIHBvaW50cz0iMzIsMzIgNjAsMTggNjAsNDIgMzIsNTYiIGZpbGw9IiNEQzk0MjAiIHN0cm9rZT0iI0RDOTQyMCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PHBvbHlnb24gcG9pbnRzPSIzMiw0IDYwLDE4IDMyLDMyIDQsMTgiIGZpbGw9IiNGRkUyN0EiIHN0cm9rZT0iI0ZGRTI3QSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PGcgc3Ryb2tlPSIjRkZGMUI4IiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48cGF0aCBkPSJNMTQgMTdsOC00Ij48L3BhdGg+PHBhdGggZD0iTTMwIDEybDcgMyI+PC9wYXRoPjxwYXRoIGQ9Ik0yNiAyM2w4LTQiPjwvcGF0aD48cGF0aCBkPSJNNDAgMTlsNiAzIj48L3BhdGg+PC9nPgo8ZyBzdHJva2U9IiNFM0ExMUYiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik04IDI4bDYgMyI+PC9wYXRoPjxwYXRoIGQ9Ik0yMiAzOGw2IDMiPjwvcGF0aD48cGF0aCBkPSJNMTAgMzhsNSAyLjUiPjwvcGF0aD48cGF0aCBkPSJNMjQgNDZsNSAyLjUiPjwvcGF0aD48L2c+CjxnIHN0cm9rZT0iI0JGN0ExNCIgc3Ryb2tlLXdpZHRoPSIxLjYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTM4IDQwbDYtMyI+PC9wYXRoPjxwYXRoIGQ9Ik01MCAzMGw2LTMiPjwvcGF0aD48cGF0aCBkPSJNNDAgNTBsNi0zIj48L3BhdGg+PHBhdGggZD0iTTUyIDQwbDUtMi41Ij48L3BhdGg+PC9nPgo8ZyBzdHJva2U9IiNBODY2MEYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBvcGFjaXR5PSIuNTUiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xOCAxMUw0NiAyNUw0NiA0OSI+PC9wYXRoPjxwYXRoIGQ9Ik00NiAxMUwxOCAyNUwxOCA0OSI+PC9wYXRoPjwvZz4KPHBhdGggZD0iTTYuNSAxNy41TDMxIDUuNSIgc3Ryb2tlPSIjRkZGNkNDIiBzdHJva2Utd2lkdGg9IjIuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L3BhdGg+PC9zdmc+","product-box":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2MCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjYwIiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxwb2x5Z29uIHBvaW50cz0iNCwxOCAzMiwzMiAzMiw1NiA0LDQyIiBmaWxsPSIjRjJDRjk1IiBzdHJva2U9IiNGMkNGOTUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wb2x5Z29uPjxwb2x5Z29uIHBvaW50cz0iMzIsMzIgNjAsMTggNjAsNDIgMzIsNTYiIGZpbGw9IiNEOUFFNkEiIHN0cm9rZT0iI0Q5QUU2QSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PHBvbHlnb24gcG9pbnRzPSIzMiw0IDYwLDE4IDMyLDMyIDQsMTgiIGZpbGw9IiNGRkU5QzQiIHN0cm9rZT0iI0ZGRTlDNCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48L3BvbHlnb24+PHBhdGggZD0iTTE4IDExTDQ2IDI1TDQ2IDQ5IiBzdHJva2U9IiNGRjRGM0IiIHN0cm9rZS13aWR0aD0iNyIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PC9wYXRoPgo8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLC41LDAsMSwwLDApIj48cmVjdCB4PSI5IiB5PSIyMyIgd2lkdGg9IjE3IiBoZWlnaHQ9IjEzIiByeD0iMy41IiBmaWxsPSIjRkZGRkZGIj48L3JlY3Q+PHJlY3QgeD0iMTMiIHk9IjI2LjUiIHdpZHRoPSI5IiBoZWlnaHQ9IjYiIHJ4PSIxLjUiIGZpbGw9IiNGN0JFMzQiPjwvcmVjdD48L2c+CjxwYXRoIGQ9Ik02LjUgMTcuNUwzMSA1LjUiIHN0cm9rZT0iI0ZGRjhFQyIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg==","helper":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA5NiIgd2lkdGg9IjY0IiBoZWlnaHQ9Ijk2IiB4bWxuczpjMnBhPSJodHRwOi8vYzJwYS5vcmcvbWFuaWZlc3QiPjxlbGxpcHNlIGN4PSIzMiIgY3k9IjkwIiByeD0iMTciIHJ5PSI0LjUiIGZpbGw9IiMxRTNBMTQiIG9wYWNpdHk9IjAuMjIiPjwvZWxsaXBzZT48ZyB0cmFuc2Zvcm09InJvdGF0ZSgxOCAyNS41IDY0KSI+PHJlY3QgeD0iMjEiIHk9IjYyIiB3aWR0aD0iOSIgaGVpZ2h0PSIxOSIgcng9IjQuNSIgZmlsbD0iIzJFM0Y3NSI+PC9yZWN0PjxlbGxpcHNlIGN4PSIyNS41IiBjeT0iODEiIHJ4PSI2IiByeT0iNCIgZmlsbD0iIzNBMkU0QSI+PC9lbGxpcHNlPjwvZz48ZyB0cmFuc2Zvcm09InJvdGF0ZSgtMTQgMzguNSA2NCkiPjxyZWN0IHg9IjM0IiB5PSI2MiIgd2lkdGg9IjkiIGhlaWdodD0iMjEiIHJ4PSI0LjUiIGZpbGw9IiMyRTNGNzUiPjwvcmVjdD48ZWxsaXBzZSBjeD0iMzguNSIgY3k9IjgzIiByeD0iNiIgcnk9IjQiIGZpbGw9IiMzQTJFNEEiPjwvZWxsaXBzZT48L2c+PHJlY3QgeD0iMTYiIHk9IjM4IiB3aWR0aD0iMzIiIGhlaWdodD0iMzAiIHJ4PSIxMyIgZmlsbD0iIzNDNEE1RSI+PC9yZWN0PjxwYXRoIGQ9Ik0xNiA1NUg0OEExMyAxMyAwIDAgMSAzNSA2OEgyOUExMyAxMyAwIDAgMSAxNiA1NVoiIGZpbGw9IiMyRTNBNEMiPjwvcGF0aD48cGF0aCBkPSJNMTggNDRRMTggNDAgMjIgNDBIMjdWNjZIMjJRMTggNjYgMTggNjBaIE00NiA0NFE0NiA0MCA0MiA0MEgzN1Y2Nkg0MlE0NiA2NiA0NiA2MFoiIGZpbGw9IiNGRjlGMUMiPjwvcGF0aD48cmVjdCB4PSIxOCIgeT0iNTQiIHdpZHRoPSI5IiBoZWlnaHQ9IjMuNSIgZmlsbD0iI0ZGRjhFQyI+PC9yZWN0PjxyZWN0IHg9IjM3IiB5PSI1NCIgd2lkdGg9IjkiIGhlaWdodD0iMy41IiBmaWxsPSIjRkZGOEVDIj48L3JlY3Q+PGxpbmUgeDE9IjE5IiB5MT0iNDYiIHgyPSIxMCIgeTI9IjU3IiBzdHJva2U9IiMzQzRBNUUiIHN0cm9rZS13aWR0aD0iOSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj48L2xpbmU+PGNpcmNsZSBjeD0iMTAiIGN5PSI1NyIgcj0iNC44IiBmaWxsPSIjRTlBOTdGIj48L2NpcmNsZT48bGluZSB4MT0iNDUiIHkxPSI0NiIgeDI9IjUzIiB5Mj0iNjQiIHN0cm9rZT0iIzNDNEE1RSIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvbGluZT48Y2lyY2xlIGN4PSI1MyIgY3k9IjY0IiByPSI0LjgiIGZpbGw9IiNFOUE5N0YiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjE2LjgiIGN5PSIyNyIgcj0iMy42IiBmaWxsPSIjRTlBOTdGIj48L2NpcmNsZT48Y2lyY2xlIGN4PSI0Ny4yIiBjeT0iMjciIHI9IjMuNiIgZmlsbD0iI0U5QTk3RiI+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMzIiIGN5PSIyNSIgcj0iMTUuNSIgZmlsbD0iI0U5QTk3RiI+PC9jaXJjbGU+PHBhdGggZD0iTTE2IDIxQzE2IDQgNDggNCA0OCAyMVoiIGZpbGw9IiNGRkIwMjAiPjwvcGF0aD48cmVjdCB4PSIxMyIgeT0iMTkiIHdpZHRoPSIzOCIgaGVpZ2h0PSI1IiByeD0iMi41IiBmaWxsPSIjRjA4QzAwIj48L3JlY3Q+PHJlY3QgeD0iMzAiIHk9IjUuNSIgd2lkdGg9IjQiIGhlaWdodD0iMTQiIHJ4PSIyIiBmaWxsPSIjRkZEMjdBIj48L3JlY3Q+PGVsbGlwc2UgY3g9IjI3IiBjeT0iMjcuNSIgcng9IjIuMSIgcnk9IjIuNyIgZmlsbD0iIzJBMjM0NCI+PC9lbGxpcHNlPjxlbGxpcHNlIGN4PSIzNyIgY3k9IjI3LjUiIHJ4PSIyLjEiIHJ5PSIyLjciIGZpbGw9IiMyQTIzNDQiPjwvZWxsaXBzZT48Y2lyY2xlIGN4PSIyNy43IiBjeT0iMjYuNiIgcj0iLjgiIGZpbGw9IiNmZmYiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjM3LjciIGN5PSIyNi42IiByPSIuOCIgZmlsbD0iI2ZmZiI+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjIuNSIgY3k9IjMyIiByPSIzIiBmaWxsPSIjRkY4QTdBIiBvcGFjaXR5PSIuNDUiPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjQxLjUiIGN5PSIzMiIgcj0iMyIgZmlsbD0iI0ZGOEE3QSIgb3BhY2l0eT0iLjQ1Ij48L2NpcmNsZT48cGF0aCBkPSJNMjguNSAzM1EzMiAzNi41IDM1LjUgMzMiIHN0cm9rZT0iIzJBMjM0NCIgc3Ryb2tlLXdpZHRoPSIxLjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PC9wYXRoPjwvc3ZnPg=="};
 // Procedural low-poly character rig + walk cycle
 function makeRig(T, opt = {}) {
   const c = Object.assign({ skin: '#F1C29A', shirt: '#E8483B', pants: '#3E63B8', shoe: '#5B3A24', hat: '#F2C14E', band: '#C0392B', hair: '#6B4226', hatOn: true, pack: false, s: 1 }, opt);
@@ -436,7 +437,7 @@ async function start(o) {
   const T = await import(CDN);
   try { await Promise.all([document.fonts.load('900 20px Rubik'), document.fonts.load('800 20px Rubik')]); } catch (e) {}
   const IMG = {};
-  await Promise.all(['coin', 'icon-backpack', 'icon-speed', 'icon-machine', 'icon-lock', 'hay-block', 'product-box'].map(n => new Promise(res => { const i = new Image(); i.onload = i.onerror = res; i.src = SPR[n]; IMG[n] = i; setTimeout(res, 4000); })));
+  await Promise.all(['coin', 'icon-backpack', 'icon-speed', 'icon-machine', 'icon-lock', 'hay-block', 'product-box', 'helper'].map(n => new Promise(res => { const i = new Image(); i.onload = i.onerror = res; i.src = SPR[n]; IMG[n] = i; setTimeout(res, 4000); })));
 
   const W = 390, H = 844, DPR = Math.min(2, window.devicePixelRatio || 1);
   const renderer = new T.WebGLRenderer({ canvas: o.gl, antialias: true, powerPreference: 'high-performance' });
@@ -458,7 +459,7 @@ async function start(o) {
     HOPPER: { x: 5.25, y: 3.7, z: -9 }, OUT: { x: 7.3, y: 1.0, z: -7.6 },
     STALL: { x: 8.2, z: 5 }, DROP: { x: 6.4, z: 5, w: 1.6, d: 2 }, PILE: { x: 6.4, z: 7.9 },
     SLOTS: [[10.1, 4.4], [10.4, 5.9], [10.7, 7.4], [11, 8.9]], SPAWN: [30, 17], EXIT: [36, 18.2],
-    PADS: [{ id: 'cap', x: -5.2, z: 2.4, icon: 'icon-backpack' }, { id: 'speed', x: -2.6, z: 2.4, icon: 'icon-speed' }, { id: 'machine', x: 0, z: 2.4, icon: 'icon-machine' }, { id: 'expand', x: 0.4, z: 9, w: 2.4, d: 2.2, icon: 'icon-lock' }],
+    PADS: [{ id: 'cap', x: -5.2, z: 2.4, icon: 'icon-backpack' }, { id: 'speed', x: -2.6, z: 2.4, icon: 'icon-speed' }, { id: 'machine', x: 0, z: 2.4, icon: 'icon-machine' }, { id: 'hire', x: 2.6, z: 2.4, icon: 'helper' }, { id: 'expand', x: 0.4, z: 9, w: 2.4, d: 2.2, icon: 'icon-lock' }],
     BOUNDS: { x0: -36, x1: 36, z0: -31, z1: 24 }
   };
   L.PADS.forEach(P => { P.w = P.w || 1.9; P.d = P.d || 1.9; });
@@ -469,6 +470,39 @@ async function start(o) {
   const fast = () => props().economy === 'fast';
   const inRect = (q, r) => Math.abs(q.x - r.x) < r.w / 2 && Math.abs(q.z - r.z) < r.d / 2;
   const fmt = n => n.toLocaleString('en-US');
+
+  // ---------- sound (procedural WebAudio) ----------
+  const AC = { ctx: null, muted: (() => { try { return localStorage.getItem('hayinc-mute') === '1'; } catch (e) { return false; } })(), last: {} };
+  const audioInit = () => {
+    if (AC.ctx) { if (AC.ctx.state === 'suspended') AC.ctx.resume(); return; }
+    try {
+      const c = new (window.AudioContext || window.webkitAudioContext)(); AC.ctx = c;
+      AC.master = c.createGain(); AC.master.gain.value = AC.muted ? 0 : 0.6; AC.master.connect(c.destination);
+      const nb = c.createBuffer(1, c.sampleRate * 0.6, c.sampleRate), d = nb.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; AC.noise = nb;
+      const o1 = c.createOscillator(), o2 = c.createOscillator(), f = c.createBiquadFilter(), g = c.createGain();
+      o1.type = 'sawtooth'; o1.frequency.value = 52; o2.type = 'square'; o2.frequency.value = 78; f.type = 'lowpass'; f.frequency.value = 240; g.gain.value = 0;
+      o1.connect(f); o2.connect(f); f.connect(g); g.connect(AC.master); o1.start(); o2.start(); AC.hum = g;
+      const amb = c.createBufferSource(), af = c.createBiquadFilter(), ag = c.createGain(); amb.buffer = nb; amb.loop = true; af.type = 'lowpass'; af.frequency.value = 500; ag.gain.value = 0.025; amb.connect(af); af.connect(ag); ag.connect(AC.master); amb.start();
+    } catch (e) {}
+  };
+  const tone = (freq, dur, type = 'sine', vol = 0.3, slide = 0, delay = 0) => { const c = AC.ctx; if (!c || AC.muted) return; const t = c.currentTime + delay, o = c.createOscillator(), g = c.createGain(); o.type = type; o.frequency.setValueAtTime(freq, t); if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(30, freq * slide), t + dur); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); o.connect(g); g.connect(AC.master); o.start(t); o.stop(t + dur + 0.03); };
+  const noise = (dur, vol, freq = 1200, q = 1, type = 'bandpass', delay = 0) => { const c = AC.ctx; if (!c || AC.muted) return; const t = c.currentTime + delay, s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(); s.buffer = AC.noise; f.type = type; f.frequency.value = freq; f.Q.value = q; g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur); s.connect(f); f.connect(g); g.connect(AC.master); s.start(t, Math.random() * 0.3); s.stop(t + dur + 0.02); };
+  const thr = (k, ms) => { const n = performance.now(); if (AC.last[k] && n - AC.last[k] < ms) return false; AC.last[k] = n; return true; };
+  const sfx = {
+    cut: () => thr('cut', 40) && noise(0.09, 0.22, 2600, 1.4),
+    pop: i => thr('pop', 28) && tone(380 + Math.min(i, 34) * 24, 0.09, 'triangle', 0.2, 1.5),
+    drop: () => thr('drop', 45) && (tone(170, 0.11, 'sine', 0.3, 0.6), noise(0.05, 0.1, 700)),
+    press: () => { tone(95, 0.18, 'square', 0.08, 0.5); noise(0.12, 0.12, 400, 0.8, 'lowpass'); },
+    coin: () => thr('coin', 38) && (tone(1400, 0.06, 'square', 0.05), tone(2100, 0.14, 'sine', 0.12, 1, 0.03)),
+    cash: () => { tone(880, 0.1, 'triangle', 0.2); tone(1320, 0.22, 'triangle', 0.18, 1, 0.08); noise(0.14, 0.08, 5000, 0.7, 'highpass', 0.02); },
+    up: () => [523, 659, 784, 1046].forEach((f, i) => tone(f, 0.24, 'triangle', 0.22, 1, i * 0.07)),
+    hire: () => { [392, 523, 659, 784].forEach((f, i) => tone(f, 0.26, 'square', 0.07, 1, i * 0.09)); tone(1046, 0.4, 'triangle', 0.15, 1, 0.36); },
+    unlock: () => { [392, 494, 587, 784, 988].forEach((f, i) => tone(f, 0.32, 'triangle', 0.2, 1, i * 0.08)); noise(0.7, 0.14, 700, 0.5, 'lowpass'); },
+    step: () => thr('step', 110) && noise(0.05, 0.07, 320, 0.8, 'lowpass'),
+    full: () => thr('full', 1200) && (tone(260, 0.12, 'square', 0.06), tone(200, 0.18, 'square', 0.06, 1, 0.12)),
+    bird: () => { const b = 2300 + Math.random() * 1400; tone(b, 0.07, 'sine', 0.04, 1.35); tone(b * 1.12, 0.09, 'sine', 0.04, 1.3, 0.11); },
+    moo: () => { tone(150, 1.0, 'sawtooth', 0.035, 0.75); tone(152, 1.0, 'triangle', 0.05, 0.75); }
+  };
 
   // ---------- hay field ----------
   const cells = [];
@@ -529,17 +563,70 @@ async function start(o) {
   // ---------- game state ----------
   let G;
   const capacity = () => 10 + G.lv.cap * 4;
-  const costOf = id => { const lv = G.lv, f = fast() ? 0.4 : 1; if (id === 'cap') return lv.cap >= 6 ? null : Math.round(30 * Math.pow(2, lv.cap) * f); if (id === 'speed') return lv.speed >= 5 ? null : Math.round(40 * Math.pow(2, lv.speed) * f); if (id === 'machine') return lv.machine >= 2 ? null : Math.round([80, 220][lv.machine] * f); if (id === 'expand') return G.unlocked ? null : Math.round(150 * f); };
+  const costOf = id => { const lv = G.lv, f = fast() ? 0.4 : 1; if (id === 'cap') return lv.cap >= 6 ? null : Math.round(30 * Math.pow(2, lv.cap) * f); if (id === 'speed') return lv.speed >= 5 ? null : Math.round(40 * Math.pow(2, lv.speed) * f); if (id === 'machine') return lv.machine >= 2 ? null : Math.round([80, 220][lv.machine] * f); if (id === 'expand') return G.unlocked ? null : Math.round(150 * f); if (id === 'hire') return lv.hire >= 2 ? null : Math.round([120, 320][lv.hire] * f); };
+  const bought = () => G.lv.cap + G.lv.speed + G.lv.machine;
+  const avail = P => P.id !== 'hire' || bought() >= 1;
+
+  // ---------- helpers (workers) ----------
+  const helpers = [];
+  const spawnHelper = (role, instant) => {
+    const rig = makeRig(T, role === 'runner' ? { shirt: '#3B82F6', pants: '#8A5A31', hat: '#F2C14E', band: '#2A2344', pack: true, s: 0.94 } : { shirt: '#2F7A24', pants: '#8A5A31', hat: '#FFFFFF', band: '#6D3FE0', pack: true, s: 0.94 });
+    const x = instant ? (role === 'runner' ? 7 : -1) : -19.6, z = instant ? (role === 'runner' ? -1 : -4) : -5.6;
+    rig.root.position.set(x, 0, z); scene.add(rig.root);
+    if (!instant) burst(x, 1, z, 18, ['#FFFFFF', '#FFD447', '#34D16E'], 3);
+    helpers.push({ rig, role, x, z, yaw: 0, stack: [], pend: 0, tm: 0, cap: 6, cell: null, sq: 0 });
+  };
+  const hStackPoint = (h, i) => { const fx = Math.sin(h.yaw), fz = Math.cos(h.yaw); let y = 0.95 + h.rig.body.position.y; for (let k = 0; k < i && k < h.stack.length; k++) y += h.stack[k].h; return new T.Vector3(h.x - fx * 0.48, y + 0.2, h.z - fz * 0.48); };
+  const updateHelpers = dt => {
+    const anyRipe = cells.some(c => !c.locked && c.g >= 1);
+    for (const h of helpers) {
+      h.tm -= dt;
+      let tgt = null;
+      const n = h.stack.length + h.pend;
+      if (h.role === 'harvester') {
+        if (h.stack.length && (n >= h.cap || !anyRipe)) h.deliver = true;
+        if (!h.stack.length && !h.pend) h.deliver = false;
+        if (h.deliver) {
+          tgt = L.INPUT;
+          if (inRect(h, L.INPUT) && h.tm <= 0 && G.input + G.inPend < 36 && !h.pend) { const s = h.stack.pop(); scene.remove(s.m); const i = G.input + G.inPend++; fly('hay', s.m.position.clone(), () => pilePos(L.INPUT, i, 'hay'), { h: 1, done: () => { G.inPend--; G.input++; sfx.drop(); } }); h.tm = 0.1; }
+        } else if (n < h.cap) {
+          if (!h.cell || h.cell.g < 1 || h.cell.locked) { let bd = 1e9; h.cell = null; for (const c of cells) if (!c.locked && c.g >= 1) { const d = Math.hypot(c.x - h.x, c.z - h.z) + (Math.hypot(c.x - p.x, c.z - p.z) < 2 ? 6 : 0); if (d < bd) { bd = d; h.cell = c; } } }
+          tgt = h.cell;
+          if (h.tm <= 0) for (const c of cells) { if (c.locked || c.g < 1 || Math.hypot(c.x - h.x, c.z - h.z) > 0.85) continue; c.g = 0; h.pend++; h.tm = 0.12; burst(c.x, 0.5, c.z, 4, ['#F7D35A', '#E8B53A'], 2); sfx.cut(); fly('hay', new T.Vector3(c.x, 0.5, c.z), () => hStackPoint(h, h.stack.length), { h: 1.2, dur: 0.3, done: () => { h.pend--; h.stack.push({ k: 'hay', m: item('hay'), h: 0.36 }); } }); break; }
+        }
+      } else {
+        if (inRect(h, L.TRAY)) h.wait = (h.wait || 0) + dt; else h.wait = 0;
+        if (h.stack.length && (n >= h.cap || (G.output === 0 && h.wait > 2))) h.deliver = true;
+        if (!h.stack.length && !h.pend) h.deliver = false;
+        if (h.deliver) {
+          tgt = L.DROP;
+          if (inRect(h, L.DROP) && h.tm <= 0 && !h.pend) { const s = h.stack.pop(); scene.remove(s.m); const i = G.counter + G.cPend++; fly('box', s.m.position.clone(), () => pilePos(L.DROP, i, 'box'), { h: 1, done: () => { G.cPend--; G.counter++; sfx.drop(); } }); h.tm = 0.1; }
+        } else {
+          tgt = L.TRAY;
+          if (inRect(h, L.TRAY) && h.tm <= 0 && G.output > 0 && n < h.cap) { G.output--; const s = pilePos(L.TRAY, G.output, 'box'); h.pend++; fly('box', s, () => hStackPoint(h, h.stack.length), { done: () => { h.pend--; h.stack.push({ k: 'box', m: item('box'), h: 0.42 }); } }); h.tm = 0.12; }
+        }
+      }
+      let spd = 0;
+      if (tgt) { const dx = tgt.x - h.x, dz = tgt.z - h.z, d = Math.hypot(dx, dz); if (d > 0.3) { const v = Math.min(d, 3.8 * dt); const [nx, nz] = collide(h.x + dx / d * v, h.z + dz / d * v, 0.4); h.x = nx; h.z = nz; spd = 3.8; turn(h, Math.atan2(dx, dz), dt, 10); } }
+      animateRig(h.rig, dt, spd, G.t, 5);
+      h.rig.root.position.set(h.x, 0, h.z); h.rig.root.rotation.y = h.yaw;
+      let y = 0.95 + h.rig.body.position.y; const fx = Math.sin(h.yaw), fz = Math.cos(h.yaw);
+      h.stack.forEach(s => { s.m.position.set(h.x - fx * 0.48, y + s.h / 2, h.z - fz * 0.48); s.m.rotation.set(0, h.yaw, 0); y += s.h; });
+    }
+  };
   const newGame = fresh => {
     let s = null; if (!fresh) try { s = JSON.parse(localStorage.getItem(o.key) || 'null'); } catch (e) {}
     stackM.forEach(q => scene.remove(q.m)); stackM.length = 0;
     flyers.forEach(f => scene.remove(f.m)); flyers.length = 0;
     parts.forEach(q => { scene.remove(q.m); q.own && q.own.dispose(); }); parts.length = 0;
     customers.forEach(c => scene.remove(c.rig.root)); customers.length = 0;
+    helpers.forEach(h => { scene.remove(h.rig.root); h.stack.forEach(s => scene.remove(s.m)); }); helpers.length = 0;
     Object.values(piles).forEach(a => { a.forEach(m => scene.remove(m)); a.length = 0; });
     texts.length = 0; ov2.length = 0;
     G = { coins: s ? s.coins : 0, lv: s ? s.lv : { cap: 0, speed: 0, machine: 0 }, unlocked: !!(s && s.unlocked), pending: 0, input: 0, inPend: 0, output: 0, outPend: 0, counter: 0, cPend: 0, pile: 0, t: 0, tm: { cut: 0, xfer: 0, mach: 0, cust: 0.5, serve: 0, pile: 0, smoke: 0 }, mWork: false, mPulse: 0, hudPop: 0, unlockT: -1, saveT: 2, pads: {} };
+    G.lv.hire = G.lv.hire || 0; G.hireShown = bought() >= 1;
     L.PADS.forEach(P => G.pads[P.id] = { paid: 0, stand: 0, acc: 0, pulse: 0 });
+    for (let i = 0; i < G.lv.hire; i++) spawnHelper(i === 0 ? 'harvester' : 'runner', true);
     cells.forEach(c => { c.locked = c.zone === 'B' && !G.unlocked; c.g = c.locked ? 0 : 1.2; c.delay = 0; c.cut = 0; });
     world.setUnlocked(G.unlocked); world.machine.setLevel(G.lv.machine);
     Object.assign(p, { x: 2, z: 0, vx: 0, vz: 0, yaw: 0 }); look.set(p.x, 0.6, p.z - 1.5);
@@ -560,11 +647,11 @@ async function start(o) {
   // ---------- input ----------
   const keys = {}, joy = { active: false, bx: 0, by: 0, x: 0, y: 0 };
   const kmap = { ArrowLeft: 'l', a: 'l', ArrowRight: 'r', d: 'r', ArrowUp: 'u', w: 'u', ArrowDown: 'd', s: 'd' };
-  const kd = e => { if (kmap[e.key]) { keys[kmap[e.key]] = 1; e.preventDefault(); } }, ku = e => { if (kmap[e.key]) keys[kmap[e.key]] = 0; };
+  const kd = e => { audioInit(); if (kmap[e.key]) { keys[kmap[e.key]] = 1; e.preventDefault(); } }, ku = e => { if (kmap[e.key]) keys[kmap[e.key]] = 0; };
   addEventListener('keydown', kd); addEventListener('keyup', ku);
   const cv = o.ov, ctx = cv.getContext('2d'); cv.width = W * DPR; cv.height = H * DPR;
   const pt = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
-  const pd = e => { const [x, y] = pt(e); Object.assign(joy, { active: true, bx: x, by: y, x, y }); cv.setPointerCapture(e.pointerId); };
+  const pd = e => { audioInit(); const [x, y] = pt(e); Object.assign(joy, { active: true, bx: x, by: y, x, y }); cv.setPointerCapture(e.pointerId); };
   const pm = e => { if (!joy.active) return; const [x, y] = pt(e); joy.x = x; joy.y = y; };
   const pu = () => { joy.active = false; };
   cv.addEventListener('pointerdown', pd); cv.addEventListener('pointermove', pm); cv.addEventListener('pointerup', pu); cv.addEventListener('pointercancel', pu);
@@ -586,7 +673,7 @@ async function start(o) {
     if (carry === 'box') return L.DROP;
     if (G.pile >= 5) return L.PILE;
     if (!carry && G.output > 0) return L.TRAY;
-    for (const P of L.PADS) { const c = costOf(P.id); if (c != null && G.coins >= c - G.pads[P.id].paid && !carry) return P; }
+    for (const P of L.PADS) { if (!avail(P)) continue; const c = costOf(P.id); if (c != null && G.coins >= c - G.pads[P.id].paid && !carry) return P; }
     if (carry === 'hay') return L.INPUT;
     let best = null, bd = 1e9;
     for (const c of cells) if (!c.locked && c.g >= 1) { const d = Math.hypot(c.x - p.x, c.z - p.z); if (d < bd) { bd = d; best = c; } }
@@ -613,6 +700,7 @@ async function start(o) {
     const stepped = animateRig(player, dt, Math.min(sp, maxS), t, 5.4);
     player.root.position.set(p.x, 0, p.z); player.root.rotation.y = p.yaw;
     const sq = clamp(p.sq, -0.2, 0.2); player.root.scale.set(1 + sq * 0.5, 1 - sq, 1 + sq * 0.5);
+    if (stepped) sfx.step();
     if (stepped) puff(p.x - Math.sin(p.yaw) * 0.15, 0.12, p.z - Math.cos(p.yaw) * 0.15, '#E3D2AA', 0.28, 0.5, 0.45);
     sw.vx += (-p.vx * 0.05 - sw.x) * 70 * dt; sw.vz += (-p.vz * 0.05 - sw.z) * 70 * dt; sw.vx *= Math.exp(-dt * 5); sw.vz *= Math.exp(-dt * 5); sw.x += sw.vx * dt; sw.z += sw.vz * dt;
 
@@ -624,7 +712,7 @@ async function start(o) {
       for (const c of cells) {
         if (c.locked || c.g < 1) continue;
         if (Math.hypot(c.x - p.x, c.z - p.z) < 0.95) {
-          c.g = 0; g.pending++; tm.cut = 0.045;
+          c.g = 0; g.pending++; tm.cut = 0.045; sfx.cut();
           burst(c.x, 0.5, c.z, 6, ['#F7D35A', '#E8B53A', '#FFF1A8'], 2.4);
           fly('hay', new T.Vector3(c.x, 0.5, c.z), () => stackPoint(stackM.length), { h: 1.6, dur: 0.3, done: () => { g.pending--; pushStack('hay'); } });
           break;
@@ -635,13 +723,13 @@ async function start(o) {
     if (tm.xfer <= 0) {
       if (inRect(p, L.INPUT) && carry === 'hay' && stackM.length && g.input + g.inPend < 36) {
         const s = popStack(), i = g.input + g.inPend++, d = pilePos(L.INPUT, i, 'hay');
-        fly('hay', s, () => d, { h: 1, done: () => { g.inPend--; g.input++; } }); tm.xfer = 0.06;
+        fly('hay', s, () => d, { h: 1, done: () => { g.inPend--; g.input++; sfx.drop(); } }); tm.xfer = 0.06;
       } else if (inRect(p, L.TRAY) && carry !== 'hay' && room > 0 && g.output > 0) {
         g.output--; const s = pilePos(L.TRAY, g.output, 'box'); g.pending++;
         fly('box', s, () => stackPoint(stackM.length, 0.42), { done: () => { g.pending--; pushStack('box'); } }); tm.xfer = 0.07;
       } else if (inRect(p, L.DROP) && carry === 'box' && stackM.length) {
         const s = popStack(), i = g.counter + g.cPend++, d = pilePos(L.DROP, i, 'box');
-        fly('box', s, () => d, { h: 1, done: () => { g.cPend--; g.counter++; } }); tm.xfer = 0.06;
+        fly('box', s, () => d, { h: 1, done: () => { g.cPend--; g.counter++; sfx.drop(); } }); tm.xfer = 0.06;
       }
     }
     const intv = [0.9, 0.6, 0.38][g.lv.machine] / (fast() ? 1.6 : 1);
@@ -652,7 +740,7 @@ async function start(o) {
       if (tm.mach >= intv) {
         tm.mach = 0; g.input--; g.outPend++;
         fly('hay', pilePos(L.INPUT, g.input, 'hay'), () => L.HOPPER, { h: 1.6, dur: 0.3, done: () => {
-          g.mPulse = 1;
+          g.mPulse = 1; sfx.press();
           const d = pilePos(L.TRAY, g.output + g.outPend - 1, 'box');
           fly('box', new T.Vector3(L.OUT.x, L.OUT.y, L.OUT.z), () => d, { h: 0.5, dur: 0.35, spin: 0, done: () => { g.outPend--; g.output++; } });
         } });
@@ -690,7 +778,7 @@ async function start(o) {
           front.state = 'leave';
           const total = front.want * 5 * (fast() ? 3 : 1), n = Math.min(8, total);
           for (let i = 0; i < n; i++) { const amt = Math.floor(total / n) + (i < total % n ? 1 : 0); fly('coin', new T.Vector3(front.x, 1.8, front.z), () => pilePos(L.PILE, Math.min(44, Math.ceil(G.pile / 5)), 'coin'), { h: 1.8, dur: 0.4, delay: i * 0.05, done: () => { G.pile += amt; } }); }
-          text(front.x, 3, front.z, '+' + total, '#FFD447', '#B06F12', 28);
+          text(front.x, 3, front.z, '+' + total, '#FFD447', '#B06F12', 28); sfx.cash();
         }
       } });
     }
@@ -699,13 +787,13 @@ async function start(o) {
     if (g.pile > 0 && Math.hypot(p.x - L.PILE.x, p.z - L.PILE.z) < 1.5 && tm.pile <= 0) {
       const amt = Math.max(1, Math.ceil(g.pile / 12)); g.pile -= amt; tm.pile = 0.035;
       const s = scr(L.PILE.x, 0.4, L.PILE.z);
-      ov2.push({ x0: s.x + (Math.random() - 0.5) * 30, y0: s.y, t: 0, dur: 0.5, done: () => { G.coins += amt; G.hudPop = 1; } });
+      ov2.push({ x0: s.x + (Math.random() - 0.5) * 30, y0: s.y, t: 0, dur: 0.5, done: () => { G.coins += amt; G.hudPop = 1; sfx.coin(); } });
     }
     // upgrade pads
     for (const P of L.PADS) {
       const st = g.pads[P.id]; st.pulse = Math.max(0, st.pulse - dt * 3);
       const c = costOf(P.id);
-      if (c == null || !inRect(p, P)) { st.stand = 0; continue; }
+      if (c == null || !avail(P) || !inRect(p, P)) { st.stand = 0; continue; }
       st.stand += dt;
       if (st.stand < 0.3 || g.coins <= 0) continue;
       st.acc -= dt;
@@ -713,11 +801,15 @@ async function start(o) {
         st.acc = 0.035;
         const amt = Math.min(g.coins, Math.max(1, Math.ceil(c / 30)), c - st.paid);
         g.coins -= amt; st.paid += amt;
-        fly('coin', new T.Vector3(p.x, 2.3, p.z), () => new T.Vector3(P.x, 0.2, P.z), { h: 0.6, dur: 0.22 });
-        if (st.paid >= c) levelUp(P);
+        fly('coin', new T.Vector3(p.x, 2.3, p.z), () => new T.Vector3(P.x, 0.2, P.z), { h: 0.6, dur: 0.22 }); sfx.coin();
+        if (st.paid >= c) { levelUp(P); st.stand = -1.2; }
       }
     }
     if (g.unlockT >= 0 && g.unlockT < 1) g.unlockT = Math.min(1, g.unlockT + dt * 1.1);
+    if (!g.hireShown && bought() >= 1) { g.hireShown = true; const H = L.PADS.find(P => P.id === 'hire'); g.pads.hire.pulse = 1; burst(H.x, 0.6, H.z, 20, ['#FFFFFF', '#34D16E', '#FFD447'], 3); text(H.x, 2.6, H.z, 'אפשר לגייס עובד!', '#fff', '#2F7A24', 24); }
+    if (stackM.length >= capacity() && stackM.length) sfx.full();
+    updateHelpers(dt);
+    if (AC.ctx) { AC.hum.gain.setTargetAtTime(g.mWork && !AC.muted ? 0.045 : 0, AC.ctx.currentTime, 0.15); tm.bird = (tm.bird ?? 3) - dt; if (tm.bird <= 0) { tm.bird = 3 + Math.random() * 6; sfx.bird(); } tm.moo = (tm.moo ?? 12) - dt; if (tm.moo <= 0) { tm.moo = 18 + Math.random() * 20; sfx.moo(); } }
 
     for (const f of flyers) {
       if (f.delay > 0) { f.delay -= dt; f.m.visible = false; continue; } f.m.visible = true; f.t += dt / f.dur; const tt = Math.min(1, f.t), e = 1 - Math.pow(1 - tt, 2), to = f.to();
@@ -747,7 +839,7 @@ async function start(o) {
     stackM.forEach((s, i) => { const f = Math.pow(i / 8, 1.5); s.pop = Math.max(0, s.pop - dt * 6); const ps = 1 + s.pop * 0.25; s.m.position.set(p.x - fx * 0.5 + sw.x * f, y + s.h / 2, p.z - fz * 0.5 + sw.z * f); s.m.rotation.set(sw.z * f * 0.25, p.yaw + Math.sin(i * 1.7) * 0.07, -sw.x * f * 0.25); s.m.scale.set(ps, 1, ps); y += s.h; });
     syncPile(piles.input, g.input, 'hay', L.INPUT); syncPile(piles.tray, g.output, 'box', L.TRAY); syncPile(piles.counter, g.counter, 'box', L.DROP); syncPile(piles.coin, Math.min(45, Math.ceil(g.pile / 5)), 'coin', L.PILE);
     for (const k of ['input', 'tray', 'drop']) { const r = k === 'drop' ? L.DROP : L[k.toUpperCase()]; world.floor[k].topMat.emissiveIntensity = inRect(p, r) ? 0.18 : 0; }
-    for (const P of L.PADS) { const pd = world.pads[P.id], st = g.pads[P.id], c = costOf(P.id); pd.g.visible = !(P.id === 'expand' && c == null && st.pulse <= 0); const s = 1 + st.pulse * 0.18; pd.g.scale.set(s, 1, s); pd.topMat.emissiveIntensity = inRect(p, P) && c != null ? 0.2 : 0; pd.topMat.color.set(c == null && P.id !== 'expand' ? '#BDB6D3' : '#ffffff'); const f = c ? st.paid / c : 0; pd.fill.visible = f > 0; pd.fill.scale.z = Math.max(0.001, f); pd.fill.position.z = (P.d - 0.34) / 2 * (1 - f); }
+    for (const P of L.PADS) { const pd = world.pads[P.id], st = g.pads[P.id], c = costOf(P.id); pd.g.visible = avail(P) && !((P.id === 'expand' || P.id === 'hire') && c == null && st.pulse <= 0); const s = 1 + st.pulse * 0.18; pd.g.scale.set(s, 1, s); pd.topMat.emissiveIntensity = inRect(p, P) && c != null ? 0.2 : 0; pd.topMat.color.set(c == null && P.id !== 'expand' ? '#BDB6D3' : '#ffffff'); const f = c ? st.paid / c : 0; pd.fill.visible = f > 0; pd.fill.scale.z = Math.max(0.001, f); pd.fill.position.z = (P.d - 0.34) / 2 * (1 - f); }
     updateField(t);
     world.tick(dt, t, { mWork: g.mWork, mPulse: g.mPulse, unlockT: g.unlockT });
 
@@ -775,8 +867,11 @@ async function start(o) {
     if (P.id === 'expand') {
       G.unlocked = true; G.unlockT = 0; world.setUnlocked(true); G.unlockT = 0;
       for (const c of cells) if (c.zone === 'B') { c.locked = false; c.g = 0; c.delay = Math.hypot(c.x - P.x, c.z - P.z) * 0.07; }
-      text(P.x, 2.6, P.z, 'שדה חדש!', '#fff', '#2F7A24', 30);
-    } else { G.lv[P.id]++; if (P.id === 'machine') { world.machine.setLevel(G.lv.machine); G.mPulse = 1; burst(L.MACH.x, 3, L.MACH.z, 20, ['#FFD447', '#fff'], 4); } text(P.x, 2.6, P.z, 'שדרוג!', '#fff', '#4E28B0', 28); }
+      text(P.x, 2.6, P.z, 'שדה חדש!', '#fff', '#2F7A24', 30); sfx.unlock();
+    } else if (P.id === 'hire') {
+      spawnHelper(G.lv.hire === 0 ? 'harvester' : 'runner', false); G.lv.hire++; sfx.hire();
+      text(P.x, 2.6, P.z, G.lv.hire === 1 ? 'קוצר הצטרף!' : 'סבל הצטרף!', '#fff', '#2F7A24', 28);
+    } else { sfx.up(); G.lv[P.id]++; if (P.id === 'machine') { world.machine.setLevel(G.lv.machine); G.mPulse = 1; burst(L.MACH.x, 3, L.MACH.z, 20, ['#FFD447', '#fff'], 4); } text(P.x, 2.6, P.z, 'שדרוג!', '#fff', '#4E28B0', 28); }
   };
 
   // ---------- overlay ----------
@@ -788,10 +883,11 @@ async function start(o) {
   const drawOverlay = () => {
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0); ctx.clearRect(0, 0, W, H);
     for (const P of L.PADS) {
-      const c = costOf(P.id); if (P.id === 'expand' && c == null) continue;
+      const c = costOf(P.id); if (!avail(P) || ((P.id === 'expand' || P.id === 'hire') && c == null)) continue;
       const s = scr(P.x, 0.15, P.z - P.d / 2); if (!s.on) continue;
       pill(s.x, s.y - 16, c == null ? 'MAX' : fmt(c - G.pads[P.id].paid), c != null, 1 + G.pads[P.id].pulse * 0.25);
       if (P.id === 'expand') label('שדה חדש', s.x, s.y - 44, 17, '#fff', '#B06F12');
+      if (P.id === 'hire') label(G.lv.hire === 0 ? 'עובד: קוצר' : 'עובד: סבל', s.x, s.y - 44, 16, '#fff', '#2F7A24');
     }
     const q = customers.find(c => c.state !== 'leave');
     if (q && !q.walking) { const s = scr(q.x, 2.55, q.z), sc = 1 + q.pulse * 0.2; ctx.save(); ctx.translate(s.x, s.y); ctx.scale(sc, sc); rr(-27, -16 + 3, 54, 32, 13, 'rgba(42,35,68,.2)'); rr(-27, -16, 54, 32, 13, '#fff'); ctx.beginPath(); ctx.moveTo(-6, 15); ctx.lineTo(0, 22); ctx.lineTo(6, 15); ctx.fill(); if (IMG['product-box'].naturalWidth) ctx.drawImage(IMG['product-box'], -23, -11, 22, 22); ctx.font = '800 15px Rubik'; ctx.fillStyle = '#2A2344'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.direction = 'ltr'; ctx.fillText('×' + (q.want - q.got), 11, 1); ctx.restore(); }
@@ -818,7 +914,9 @@ async function start(o) {
   return {
     reset: () => { try { localStorage.removeItem(o.key); } catch (e) {} newGame(true); },
     dispose: () => { dead = true; cancelAnimationFrame(raf); removeEventListener('keydown', kd); removeEventListener('keyup', ku); cv.removeEventListener('pointerdown', pd); cv.removeEventListener('pointermove', pm); cv.removeEventListener('pointerup', pu); cv.removeEventListener('pointercancel', pu); renderer.dispose(); },
-    debug: () => ({ p, G, customers: customers.length, stack: stackM.length }),
+    setMuted: m => { AC.muted = m; try { localStorage.setItem('hayinc-mute', m ? '1' : '0'); } catch (e) {} if (AC.master) AC.master.gain.value = m ? 0 : 0.6; },
+    isMuted: () => AC.muted,
+    debug: () => ({ helpers: helpers.map(h => ({ role: h.role, x: h.x, z: h.z, n: h.stack.length })), p, G, customers: customers.length, stack: stackM.length }),
     step: dt => { update(dt); drawOverlay(); }
   };
 }
@@ -833,6 +931,7 @@ try {
   const gameApi = await start({ gl: $('gl'), ov: $('ov'), coinEl: $('coins'), base: '', key: 'hayinc-3d-v1', props: () => P,
     onState: s => { $('coinsT').textContent = s.coins.toLocaleString('en-US'); $('capT').textContent = s.stack + '/' + s.cap; $('capB').style.width = Math.min(100, s.stack / s.cap * 100) + '%'; $('capB').style.background = s.stack >= s.cap ? '#FF4F3B' : '#3B82F6'; },
     onMove: () => { $('hint').style.display = 'none'; } });
+  const mb = () => $('mute').textContent = gameApi.isMuted() ? 'סאונד: כבוי' : 'סאונד: פעיל'; mb(); $('mute').onclick = () => { gameApi.setMuted(!gameApi.isMuted()); mb(); };
   $('reset').onclick = () => { gameApi.reset(); $('hint').style.display = ''; };
   $('load').remove();
 } catch (e) { console.error(e); $('loadT').textContent = 'שגיאה: ' + e.message + ' — נסו לפתוח ב-Chrome'; }
